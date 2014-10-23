@@ -1,6 +1,5 @@
 from hllApi import HllApi
 from time import sleep
-from TestingException import *
 
 
 
@@ -36,7 +35,7 @@ class PyHllApi(HllApi):
             sleep(0.01)
             timeOut -= 1
         if(timeOut == 0):
-            raise(TestingException("Timeout: Host timed out. Please Try Again"))
+            return -1
             
     def notifySearch(self, searchString, timeOut=300):
         self.notifyHost(timeOut)
@@ -45,7 +44,7 @@ class PyHllApi(HllApi):
             sleep(0.01)
             timeOut -= 1
         if(timeOut == 0):
-            raise(TestingException("Timeout looking for: " + fieldName))
+            return -1
         
             
 
@@ -61,7 +60,6 @@ class PyHllApi(HllApi):
         if( location > 0 ):
             return self.copyStringToField(fieldValue, location)
         else:
-            raise(TestingException("Field: " + fieldName + " is not found"))
             return -1
 
     def clearScreen(self, timeOut=300):
